@@ -48,7 +48,19 @@ def input_for_sorting():
 	return clean_list(numbers)
 
 def linear_search(input_list,input_number):
-	print input_list,input_number
+	steps = 0	
+	#loop through the list
+	for element in input_list:
+		steps = steps + 1
+		if element == input_number:
+			break
+	
+	#print output to console
+	if steps == len(input_list):
+		print "Number is not an element of the list"
+	else:
+		print "Number found in the list at %d position in %d number of steps"%steps,%steps
+
 def binary_search(input_list,input_number):
 	print input_list ,input_number
 def insertion_sort(input_list):
