@@ -72,7 +72,7 @@ def binary_search(input_list,input_number):
 		else:
 			print "Number not found in the list"
 			return
-	#if the terminating condition is false then the function goes into recursion
+	#if the above terminating condition is false then the function goes into recursion
 	else: 
 		mid_index = mid_element_index(input_list)
 		mid_val = input_list[mid_index]
@@ -88,7 +88,21 @@ def binary_search(input_list,input_number):
 
 
 def insertion_sort(input_list):
-	print input_list
+	sorted_list = [input_list[0]]
+	for element in input_list[1:len(input_list)]:
+		loop_count = 0
+		for i in sorted_list:
+			loop_count = loop_count + 1
+			ind = sorted_list.index(i)
+			if element <= i:
+				sorted_list.insert(ind,element)
+				break
+		if loop_count == len(sorted_list):
+		 	sorted_list.append(element)
+	print sorted_list
+
+
+
 def selection_sort(input_list):
 	print input_list
 def bubble_sort(input_list):
