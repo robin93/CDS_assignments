@@ -126,6 +126,7 @@ def selection_sort(input_list):
 
 	print "\nFinal sorted list : ",sorted_list
 
+#Function to write the bubble sort algorithm
 def bubble_sort(input_list):
 	count_check = 1   #variable to keep track of the quality of the final sorted list. when the final list is sorted this will be zero
 	steps = 0
@@ -144,8 +145,45 @@ def bubble_sort(input_list):
 
 def quick_sort(input_list):
 	print input_list
+
 def merge_sort(input_list):
-	print input_list
+	if len(input_list)==1:
+		#print input_list
+		return input_list
+	elif len(input_list) == 2:
+		if input_list[0]>input_list[1]:
+			temp = input_list[0]
+			input_list[0] = input_list[1]
+			input_list[1] = temp
+		#print input_list
+		return input_list	
+	else:
+		parting = mid_element_index(input_list)
+		#print parting 
+		print "length of input",len(input_list)
+		sorted_list = []
+		part1 = merge_sort(input_list[0:parting+1])
+		print "part1",part1
+		part2 = merge_sort(input_list[parting+1:len(input_list)])
+		print "part2",part2
+		while (len(part1)>0 and len(part2)>0):
+			if part1[0]>part2[0]:
+				sorted_list.append(part2[0])
+				part2.remove(part2[0])
+			else:
+				sorted_list.append(part1[0])
+				part1.remove(part1[0])
+
+		if len(part1)==0:
+			sorted_list = sorted_list + part2
+		else:
+			sorted_list = sorted_list + part1
+		
+		print sorted_list
+		return sorted_list		
+
+
+
 def shell_sort(input_list):
 	print input_list
 
