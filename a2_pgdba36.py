@@ -144,28 +144,47 @@ def bubble_sort(input_list):
 	print "\nFinal sorted list : ",input_list
 
 def quick_sort(input_list):
-	print input_list
+	if len(input_list)<=1:
+		sorted_list = input_list
+		return sorted_list
+	else:
+		benchmark_element = input_list[0]
+		left_list = []
+		right_list = []
+		for element in input_list[1:len(input_list)]:
+			if element <= benchmark_element:
+				left_list.append(element)
+			else:
+				right_list.append(element)
+		part1 = quick_sort(left_list)
+		part1.append(input_list[0])
+		part2 = quick_sort(right_list)
+		if len(part1)>0 and len(part2)>0:
+			sorted_list = part1 + part2
+		elif len(part1)>0 and len(part2)==0:
+			sorted_list = part1
+		elif len(part1)==0 and len(part2)>0:
+			sorted_list = part2
+		#print sorted_list
+		return sorted_list
+
 
 def merge_sort(input_list):
+	#When the size of the array is 1 or 2 then we have a terminal condition which will not be further recursed
 	if len(input_list)==1:
-		#print input_list
 		return input_list
 	elif len(input_list) == 2:
 		if input_list[0]>input_list[1]:
 			temp = input_list[0]
 			input_list[0] = input_list[1]
 			input_list[1] = temp
-		#print input_list
 		return input_list	
 	else:
 		parting = mid_element_index(input_list)
-		#print parting 
-		print "length of input",len(input_list)
 		sorted_list = []
 		part1 = merge_sort(input_list[0:parting+1])
-		print "part1",part1
 		part2 = merge_sort(input_list[parting+1:len(input_list)])
-		print "part2",part2
+		#Part where the merging
 		while (len(part1)>0 and len(part2)>0):
 			if part1[0]>part2[0]:
 				sorted_list.append(part2[0])
@@ -178,10 +197,8 @@ def merge_sort(input_list):
 			sorted_list = sorted_list + part2
 		else:
 			sorted_list = sorted_list + part1
-		
-		print sorted_list
+		#print sorted_list
 		return sorted_list		
-
 
 
 def shell_sort(input_list):
@@ -199,9 +216,9 @@ else:
 	elif objective == 5:
 		bubble_sort(input_for_sorting())
 	elif objective == 6:
-		quick_sort(input_for_sorting())
+		print (quick_sort(input_for_sorting()))
 	elif objective == 7:
-		merge_sort(input_for_sorting())
+		print (merge_sort(input_for_sorting()))
 	elif objective == 8:
 		shell_sort(input_for_sorting())
 
