@@ -50,6 +50,34 @@ def mid_element_index(input_list):
 		else:
 			return ((size+1)/2)-1
 
+def insertion_sort_for_shell_sort(input_list):
+		sorted_list = [input_list[0]]
+		for element in input_list[1:len(input_list)]:
+			loop_count = 0
+			for i in sorted_list:
+				loop_count = loop_count + 1
+				ind = sorted_list.index(i)
+				if element <= i:
+					sorted_list.insert(ind,element)
+					break
+			if loop_count == len(sorted_list):
+		 		sorted_list.append(element)
+		return sorted_list
+
+def combine_in_shell_sort(sublist1,sublist2,sublist3):
+		combined_list = []
+		for i in range(len(sublist1)):
+			combined_list.append(sublist1[0])
+			sublist1.remove(sublist1[0])
+			if len(sublist2)>0:
+				combined_list.append(sublist2[0])
+				sublist2.remove(sublist2[0])
+			if len(sublist3)>0:
+				combined_list.append(sublist3[0])
+				sublist3.remove(sublist3[0])
+		return combined_list
+
+
 def linear_search(input_list,input_number):
 	steps = 0	
 	#loop through the list
@@ -200,9 +228,16 @@ def merge_sort(input_list):
 		#print sorted_list
 		return sorted_list		
 
-
+#Code for shell sort algorithm
 def shell_sort(input_list):
-	print input_list
+	gap = 3
+	sublist1 = insertion_sort_for_shell_sort([input_list[i] for i in range(len(input_list)) if i%gap == 0])
+	sublist2 = insertion_sort_for_shell_sort([input_list[i] for i in range(len(input_list)) if i%gap == 1])
+	sublist3 = insertion_sort_for_shell_sort([input_list[i] for i in range(len(input_list)) if i%gap == 2])
+	modified_list = combine_in_shell_sort(sublist1,sublist2,sublist3)
+	print insertion_sort_for_shell_sort(modified_list) 
+
+
 
 if objective ==1:
 	linear_search(input_for_Linear_search(),input_number_for_search())
