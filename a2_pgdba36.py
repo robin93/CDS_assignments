@@ -19,6 +19,8 @@ def clean_list(input_list):
 			user_input_list.append(float(i))
 	return user_input_list
 
+#def float to int and cleaning with the list or the array as the input and the simplified list as the output 
+
 def input_for_Linear_search():
 	numbers = raw_input("Enter a comma seperated list of numbers to be searched in :").split(",")  #https://www.daniweb.com/software-development/python/threads/352467/converting-input-into-a-list
 	return clean_list(numbers)
@@ -89,7 +91,10 @@ def binary_search(input_list,input_number):
 
 def insertion_sort(input_list):
 	sorted_list = [input_list[0]]
+	outer_loop_count = 0
 	for element in input_list[1:len(input_list)]:
+		print "Sorted list in the step %d is : "%outer_loop_count,sorted_list
+		outer_loop_count = outer_loop_count + 1
 		loop_count = 0
 		for i in sorted_list:
 			loop_count = loop_count + 1
@@ -99,14 +104,44 @@ def insertion_sort(input_list):
 				break
 		if loop_count == len(sorted_list):
 		 	sorted_list.append(element)
-	print sorted_list
+	print "\nFinal sorted list : ",sorted_list
 
 
 
 def selection_sort(input_list):
-	print input_list
+	#function to identify the minimum and remove it from the list
+	def min_element(input_list):
+		rolling_min_element = input_list[0]
+		for element in input_list[1:len(input_list)]:
+			if element < rolling_min_element:
+				rolling_min_element = element
+		input_list.remove(rolling_min_element)
+		return rolling_min_element
+
+	#running the min_function over the input list and adding the output to a new list
+	sorted_list = []
+	for i in range(len(input_list)):
+		sorted_list.append(min_element(input_list))
+		print "Sorted list in the step %d is : "%i,sorted_list
+
+	print "\nFinal sorted list : ",sorted_list
+
 def bubble_sort(input_list):
-	print input_list
+	count_check = 1   #variable to keep track of the quality of the final sorted list. when the final list is sorted this will be zero
+	steps = 0
+	while count_check>0:
+		count_check = 0
+		steps = steps + 1
+		for i in range(len(input_list)-1):
+			if input_list[i]>input_list[i+1]:
+				count_check = count_check + 1
+				temp = input_list[i]
+				input_list[i] = input_list[i+1]
+				input_list[i+1] = temp
+		print "Sorted list in the step %d is : "%steps,input_list
+
+	print "\nFinal sorted list : ",input_list
+
 def quick_sort(input_list):
 	print input_list
 def merge_sort(input_list):
