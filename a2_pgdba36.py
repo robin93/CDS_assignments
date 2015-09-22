@@ -77,6 +77,16 @@ def combine_in_shell_sort(sublist1,sublist2,sublist3):
 				sublist3.remove(sublist3[0])
 		return combined_list
 
+def neat_output(input_list):
+	output_list = []
+	for element in input_list:
+		if element%1 >0:
+			output_list.append(float(element))
+		else:
+			output_list.append(int(element))
+	return output_list
+
+
 
 def linear_search(input_list,input_number):
 	steps = 0	
@@ -88,9 +98,9 @@ def linear_search(input_list,input_number):
 	
 	#print output to console
 	if steps == len(input_list):
-		print "\nNumber is not an element of the list"
+		print "\nNumber is not an element of the list\n"
 	else:
-		print "\n\nNumber found in the list at %d position in %d number of steps"%(steps,steps) 
+		print "\n\nNumber found in the list at %d position in %d number of steps\n"%(steps,steps) 
 
 def binary_search(input_list,input_number):
 	
@@ -152,7 +162,7 @@ def selection_sort(input_list):
 		sorted_list.append(min_element(input_list))
 		print "Sorted list in the step %d is : "%i,sorted_list
 
-	print "\nFinal sorted list : ",sorted_list
+	print "\nFinal sorted list : ",neat_output(sorted_list)
 
 #Function to write the bubble sort algorithm
 def bubble_sort(input_list):
