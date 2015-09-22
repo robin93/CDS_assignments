@@ -131,7 +131,7 @@ def insertion_sort(input_list):
 	sorted_list = [input_list[0]]
 	outer_loop_count = 0
 	for element in input_list[1:len(input_list)]:
-		print "Sorted list in the step %d is : "%outer_loop_count,sorted_list
+		print "Sorted list in the step %d is : "%outer_loop_count,neat_output(sorted_list)
 		outer_loop_count = outer_loop_count + 1
 		loop_count = 0
 		for i in sorted_list:
@@ -142,7 +142,7 @@ def insertion_sort(input_list):
 				break
 		if loop_count == len(sorted_list):
 		 	sorted_list.append(element)
-	print "\nFinal sorted list : ",sorted_list
+	print "\nFinal sorted list : ",neat_output(sorted_list)
 
 
 
@@ -160,7 +160,7 @@ def selection_sort(input_list):
 	sorted_list = []
 	for i in range(len(input_list)):
 		sorted_list.append(min_element(input_list))
-		print "Sorted list in the step %d is : "%i,sorted_list
+		print "Sorted list in the step %d is : "%i,neat_output(sorted_list)
 
 	print "\nFinal sorted list : ",neat_output(sorted_list)
 
@@ -177,9 +177,9 @@ def bubble_sort(input_list):
 				temp = input_list[i]
 				input_list[i] = input_list[i+1]
 				input_list[i+1] = temp
-		print "Sorted list in the step %d is : "%steps,input_list
+		print "Sorted list in the step %d is : "%steps,neat_output(input_list)
 
-	print "\nFinal sorted list : ",input_list
+	print "\nFinal sorted list : ",neat_output(input_list)
 
 def quick_sort(input_list):
 	if len(input_list)<=1:
@@ -235,7 +235,6 @@ def merge_sort(input_list):
 			sorted_list = sorted_list + part2
 		else:
 			sorted_list = sorted_list + part1
-		#print sorted_list
 		return sorted_list		
 
 #Code for shell sort algorithm
@@ -245,7 +244,7 @@ def shell_sort(input_list):
 	sublist2 = insertion_sort_for_shell_sort([input_list[i] for i in range(len(input_list)) if i%gap == 1])
 	sublist3 = insertion_sort_for_shell_sort([input_list[i] for i in range(len(input_list)) if i%gap == 2])
 	modified_list = combine_in_shell_sort(sublist1,sublist2,sublist3)
-	print insertion_sort_for_shell_sort(modified_list) 
+	print neat_output(insertion_sort_for_shell_sort(modified_list))
 
 
 
@@ -261,9 +260,8 @@ else:
 	elif objective == 5:
 		bubble_sort(input_for_sorting())
 	elif objective == 6:
-		print (quick_sort(input_for_sorting()))
+		print neat_output(quick_sort(input_for_sorting()))
 	elif objective == 7:
-		print (merge_sort(input_for_sorting()))
+		print neat_output(merge_sort(input_for_sorting()))
 	elif objective == 8:
 		shell_sort(input_for_sorting())
-
