@@ -12,14 +12,8 @@ objective = input("Please select on of the following:\
 
 print objective
 
-def clean_list(input_list):
-	user_input_list = []
-	for i in input_list:
-		if not i.isalpha():
-			user_input_list.append(float(i))
-	return user_input_list
-
-#def float to int and cleaning with the list or the array as the input and the simplified list as the output 
+def clean_list(input_list):  
+	return [float(i) for i in input_list if not i.isalpha()]
 
 def input_for_Linear_search():
 	numbers = raw_input("Enter a comma seperated list of numbers to be searched in :").split(",")  #https://www.daniweb.com/software-development/python/threads/352467/converting-input-into-a-list
@@ -43,12 +37,10 @@ def input_for_sorting():
 	numbers = raw_input("Enter a comma seperated list of numbers to be sorted :").split(",")
 	return clean_list(numbers)
 
+#function to define the mid element in a list to be used in binary search 
 def mid_element_index(input_list):
 		size = len(input_list)
-		if size%2 == 0:
-			return ((size/2)-1)
-		else:
-			return ((size+1)/2)-1
+		return (((size/2)-1) if size%2 == 0 else ((size+1)/2)-1)
 
 def insertion_sort_for_shell_sort(input_list):
 		sorted_list = [input_list[0]]
@@ -64,6 +56,7 @@ def insertion_sort_for_shell_sort(input_list):
 		 		sorted_list.append(element)
 		return sorted_list
 
+#function to be used in shell sort for ordered combination of the sublists 
 def combine_in_shell_sort(sublist1,sublist2,sublist3):
 		combined_list = []
 		for i in range(len(sublist1)):
@@ -77,13 +70,13 @@ def combine_in_shell_sort(sublist1,sublist2,sublist3):
 				sublist3.remove(sublist3[0])
 		return combined_list
 
+#function to improve presentation of final printed list, by printing intergers as integers and float as float. Purely for asthetic considerations  
 def neat_output(input_list):
+	#return [float(element) for element in input_list if (element%1 >0) else int(element)]
 	output_list = []
 	for element in input_list:
-		if element%1 >0:
-			output_list.append(float(element))
-		else:
-			output_list.append(int(element))
+		if element%1 >0:	output_list.append(float(element))
+		else:	output_list.append(int(element))
 	return output_list
 
 
